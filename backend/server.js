@@ -15,23 +15,9 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-
-const allowedOrigins = [
-    "http://localhost:3000",
-    "https://mern-task-app-glom.onrender.com"
-  ];
-  
-  app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    }
-  }));
-
-
+app.use(cors({
+    origin:["http://localhost:3000","https://mern-task-app-glom.onrender.com"]
+}));
 app.use("/api/tasks",router);
 
 //----create home page route-----
